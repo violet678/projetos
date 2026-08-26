@@ -1,0 +1,12 @@
+{%extends "base.html"}
+
+{% block content %}
+    <h2>Criar card</h2>
+
+    <form method="POST" action="/form_create">
+        <input type="text" name="title" placeholder="Titulo" required><br><br>
+        <input type="text" name="subtitle" placheholder="Subtitulo" required><br><br>
+        <textarea name="content" placeholder="conteudo" required></textarea><br><br>
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}

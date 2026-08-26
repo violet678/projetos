@@ -1,0 +1,63 @@
+#bibliotecas
+import discord
+from discord.ext import commands
+
+# variáveis
+intents = discord.Intents.default()
+intents.members = True
+intents.message_content = True
+
+felicidade = 10
+saude = 10
+energia = 10
+limpeza = 10
+
+
+#comandos
+bot = commands.Bot(command_prefix=';', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Bot conectado como {bot.user}')
+
+
+@bot.event
+async def on_message(message):
+    
+    #evitar loops
+    if message.author == bot.user:
+        return
+
+if message.content.startswith(';olá'):
+        await message.channel.send('olá, eu sou um bot pet virtual, oque seseja fazer? ; brincar ; alimentar ; limpar ; dicas')
+
+@bot.command(name = 'brincar')
+global felicidade
+global energia
+async def brincar(ctx):
+    await ctx.send('voce brincou com seu pet, ele está muito feliz!')
+    felicidade +=5
+    energia -=5
+    await ctx.send(f'felicidade: {felicidade}')
+    await ctx.send(f'energia: {energia}')
+
+@bot.command(name = 'alimentar')
+global energia
+async def alimentar(ctx):
+    await ctx.send('voce alimentou seu pet, energia aumentou em 5')
+    energia +=5
+    await ctx.send(f'energia: {energia}')
+
+@bot.command(name = 'limpar')
+global saude
+async def limpar(ctx):
+    await ctx.send('voce o limpou, saude aumentou em 5')
+    saude +=5
+    await ctx.send(f'saude: {saude}')
+
+@bot.command(name = 'dicas')
+async def dicas(ctx):
+    await ctx.send('eu sou um pet virtual, brincar me deixa feliz mas cansado, alimentar aumenta minha energia, e limpar aumenta minha saude')
+
+
+bot.run("token")

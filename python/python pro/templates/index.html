@@ -1,0 +1,20 @@
+{% extends "base.html" %}  
+
+{% block content %}
+    <h2>Estes são seus cards!</h2>
+
+    <a href="/create" class="btn">criar novo card</a>
+    <br><br>
+
+    <div class="cards">
+            {% for card in cards %}
+                <div class="card">
+                    <h3> {{ card.title }} </h3>
+                    <p>{{ card.subtitle }}</p>
+                    <a href="/cards/{{ card.id }}" class="btn">Ver mais</a>
+                    
+            
+    </div>
+        {% endfor %}
+   
+{% endblock %}

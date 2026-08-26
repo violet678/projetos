@@ -1,0 +1,1 @@
+{"Germany": "Berlin", "France": "Paris", "Italy": "Rome", "kitten": 123}
